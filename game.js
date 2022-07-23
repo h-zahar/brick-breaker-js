@@ -15,7 +15,7 @@ new InputHandler(objPaddle);
 
 let lastTime = 0;
 
-const gameLoop = (timeStamp = 0) => {
+const gameLoop = (timeStamp) => {
     ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     let deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
@@ -25,4 +25,4 @@ const gameLoop = (timeStamp = 0) => {
     requestAnimationFrame(gameLoop);
 }
 
-gameLoop();
+requestAnimationFrame(gameLoop);

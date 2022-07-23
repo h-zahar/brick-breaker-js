@@ -32,8 +32,6 @@ export default class Paddle {
     }
 
     update(deltaTime) {
-        if (!deltaTime) return;
-
         this.position.x += this.speed / deltaTime;
 
         if (this.position.x + this.width >= this.gameWidth) {
