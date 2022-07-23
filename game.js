@@ -1,6 +1,14 @@
-const canvas = /** @type {HTMLCanvasElement} */ (document.getElementById("game-screen"));
+import Paddle from "./paddle.js";
+
+const canvas = /** @type {HTMLCanvasElement} */ (document.getElementById("canvas"));
 
 const ctx =  canvas.getContext("2d");
 
-ctx.fillStyle = "red";
-ctx.fillRect(200, 40, 100, 200);
+const GAME_WIDTH = 800;
+const GAME_HEIGHT = 600;
+
+// ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+const objPaddle = new Paddle(GAME_WIDTH, GAME_HEIGHT);
+
+objPaddle.draw(ctx);
