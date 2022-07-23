@@ -6,8 +6,8 @@ const canvas = /** @type {HTMLCanvasElement} */ (document.getElementById("canvas
 
 const ctx =  canvas.getContext("2d");
 
-const GAME_WIDTH = 800;
-const GAME_HEIGHT = 600;
+const GAME_WIDTH = canvas.width;
+const GAME_HEIGHT = canvas.height;
 
 const objPaddle = new Paddle(GAME_WIDTH, GAME_HEIGHT);
 
