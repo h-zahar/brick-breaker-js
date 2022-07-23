@@ -27,7 +27,7 @@ export default class Paddle {
     }
 
     draw(/** @type {CanvasRenderingContext2D} */ ctx) {
-        ctx.fillStyle = "blue";
+        ctx.fillStyle = "#1a1a86";
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
 
