@@ -5,8 +5,8 @@ export default class Ball {
         this.offset = 10;
 
         this.speed = {
-            x: 20,
-            y: 20
+            x: 40,
+            y: 40
         }
 
         this.size = {
