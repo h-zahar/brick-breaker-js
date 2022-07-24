@@ -8,26 +8,25 @@ export default class GameManager {
             width: gameWidth,
             height: gameHeight
         };
-        
+    }   
+
+    start() {
         this.paddle = new Paddle(this);
         this.ball = new Ball(this);
         this.objs = [this.paddle, this.ball];
 
         new InputHandler(this);
-    }   
+    }
+    
+    draw(/** @type {CanvasRenderingContext2D} */ ctx) {
+        this.objs.forEach(elem => {
+            elem.draw(ctx);
+        });
+    }
 
-    start(/** @type {CanvasRenderingContext2D} */ ctx, deltaTime) {
-        const draw = () => {
-            this.objs.forEach(elem => {
-                elem.draw(ctx);
-            });
-        };
-        const update = () => {
-            this.objs.forEach(elem => {
-                elem.update(deltaTime);
-            });
-        }
-        draw();
-        update();
+    update(deltaTime) {
+        this.objs.forEach(elem => {
+            elem.update(deltaTime);
+        });
     }
 }
