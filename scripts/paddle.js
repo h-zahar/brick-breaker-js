@@ -6,9 +6,11 @@ export default class Paddle {
         this.width = 150;
         this.height = 30;
 
+        this.offset = 10;
+
         this.position = {
             x: (this.gameWidth / 2) - (this.width / 2),
-            y: this.gameHeight - this.height - 10
+            y: this.gameHeight - this.height - this.offset
         };
         
         this.maxSpeed = 60;
