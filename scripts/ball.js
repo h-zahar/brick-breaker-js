@@ -1,7 +1,8 @@
 export default class Ball {
-    constructor(gameWidth, gameHeight) {
-        this.gameWidth = gameWidth;
-        this.gameHeight = gameHeight;
+    constructor(frame) {
+        this.ball = document.getElementById("ball");
+        this.gameWidth = frame.game.width;
+        this.gameHeight = frame.game.height;
         this.offset = 10;
 
         this.speed = {
@@ -20,8 +21,8 @@ export default class Ball {
         };
     }
 
-    draw(/** @type {CanvasRenderingContext2D} */ ctx, ball) {
-        ctx.drawImage(ball, this.position.x, this.position.y, this.size.y, this.size.x);
+    draw(/** @type {CanvasRenderingContext2D} */ ctx) {
+        ctx.drawImage(this.ball, this.position.x, this.position.y, this.size.y, this.size.x);
     }
 
     update(deltaTime) {

@@ -1,22 +1,22 @@
 export default class InputHandler {
-    constructor(objPaddle) {
+    constructor(obj) {
         document.addEventListener("keydown", event => {
           if (event.key === "ArrowLeft") {
-            objPaddle.moveLeft();
+            obj.paddle.moveLeft();
           } 
           if (event.key === "ArrowRight") {
-            objPaddle.moveRight();
+            obj.paddle.moveRight();
           } 
         });
 
         document.addEventListener("keyup", event => {
             if (event.key === "ArrowLeft") {
-                if (objPaddle.speed < 0)
-                objPaddle.stop();
+                if (obj.paddle.speed < 0)
+                obj.paddle.stop();
             }
             if (event.key === "ArrowRight") {
-                if (objPaddle.speed > 0)
-                objPaddle.stop();
+                if (obj.paddle.speed > 0)
+                obj.paddle.stop();
             }
         });
 
