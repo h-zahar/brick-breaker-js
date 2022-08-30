@@ -1,6 +1,7 @@
 import Paddle from "./paddle.js";
 import InputHandler from "./input.js";
 import Ball from "./ball.js";
+import Bricks from "./brick.js";
 
 export default class GameManager {
     constructor(gameWidth, gameHeight) {
@@ -13,20 +14,23 @@ export default class GameManager {
     start() {
         this.paddle = new Paddle(this);
         this.ball = new Ball(this);
-        this.objs = [this.paddle, this.ball];
+        this.brick = new Bricks(this);
+        this.objs = [this.paddle, this.ball, this.brick];
 
         new InputHandler(this);
     }
     
     draw(/** @type {CanvasRenderingContext2D} */ ctx) {
         this.objs.forEach(elem => {
-            elem.draw(ctx);
+            elem?.draw ? elem.draw(ctx)
+            : null;
         });
     }
 
     update(deltaTime) {
         this.objs.forEach(elem => {
-            elem.update(deltaTime);
+            elem?.update ? elem.update(deltaTime)
+            : null;
         });
     }
 }
