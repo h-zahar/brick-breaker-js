@@ -1,3 +1,5 @@
+import { levels } from "./levels.js";
+
 export default class Brick {
     constructor(frame) {
         // this.paddle = frame.paddle;
@@ -11,7 +13,8 @@ export default class Brick {
             y: 40
         }
 
-        this.width = 40;
+        this.width = (this.gameWidth - (this.offset * (levels[0].length + 1))) / (levels[0].length);
+
         this.height = 20;
 
         this.position = {
@@ -21,8 +24,16 @@ export default class Brick {
     }
 
     draw(/** @type {CanvasRenderingContext2D} */ ctx) {
-        for (let i = 0; i < 10; i++) {
-            ctx.drawImage(this.brick, this.position.x + (i * (this.width + this.offset)), this.position.y, this.width, this.height);
+        for ( let i = 0; i < levels.length; i++) {
+            for (let j = 0; j < levels[i].length; j++) {
+                levels[i][j] ? ctx.drawImage(
+                    this.brick, 
+                    this.position.x + (j * (this.width + this.offset)), 
+                    this.position.y + (i * (this.height + this.offset)), 
+                    this.width, 
+                    this.height
+                ) : null;
+            }
         }
     }
 
