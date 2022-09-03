@@ -1,4 +1,4 @@
-export const defaultCollusion = (gameWidth, gameHeight, ball) => {
+export const defaultCollision = (gameWidth, gameHeight, ball) => {
     const leftBar = 0;
     const rightBar = gameWidth;
     const topRoof = gameHeight + (ball.size.y / 2);
@@ -24,7 +24,7 @@ export const defaultCollusion = (gameWidth, gameHeight, ball) => {
     }
 };
 
-export const isCollusion = (ball, gameObject) => {
+export const isCollision = (ball, gameObject) => {
     // console.log(gameHeight, gameWidth, ball.position, gameObject.position);
     if (!gameObject?.paddle) console.log(gameObject);
 
@@ -37,11 +37,11 @@ export const isCollusion = (ball, gameObject) => {
     let leftXLimit = gameObject.position.x;
     let rightXLimit = gameObject.position.x + gameObject.width;
 
-    let collusionUpYPoint = gameObject.position.y;
+    let collisionUpYPoint = gameObject.position.y;
 
-    let collusionBottomYPoint = gameObject.position.y + gameObject.height;
+    let collisionBottomYPoint = gameObject.position.y + gameObject.height;
 
-    if (((relativeYPosition >= collusionUpYPoint && actualYPosition <= collusionBottomYPoint) && (actualYPosition <= collusionBottomYPoint && relativeYPosition && collusionBottomYPoint)) && (actualXPosition >= leftXLimit && relativeXPosition <= rightXLimit)) {
+    if (((relativeYPosition >= collisionUpYPoint && actualYPosition <= collisionBottomYPoint) && (actualYPosition <= collisionBottomYPoint && relativeYPosition && collisionBottomYPoint)) && (actualXPosition >= leftXLimit && relativeXPosition <= rightXLimit)) {
         return true;
     } else {
         return false;

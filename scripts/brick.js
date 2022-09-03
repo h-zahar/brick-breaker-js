@@ -1,4 +1,4 @@
-import { isCollusion } from "./collusion.js";
+import { isCollision } from "./collision.js";
 
 export default class Brick {
     constructor(frame) {
@@ -45,7 +45,7 @@ export default class Brick {
 
         for ( let i = 0; i < this.level.length; i++) {
             for (let j = 0; j < this.level[i].length; j++) {
-                this.level[i][j] ? ((isCollusion(
+                this.level[i][j] ? ((isCollision(
                     this.ball,
                     {
                         position: {

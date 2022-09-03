@@ -1,4 +1,4 @@
-import { defaultCollusion, isCollusion } from "./collusion.js";
+import { defaultCollision, isCollision } from "./collision.js";
 
 export default class Ball {
     constructor(frame) {
@@ -35,9 +35,9 @@ export default class Ball {
         this.position.x += this.speed.x / deltaTime;
         this.position.y += this.speed.y / deltaTime;
 
-        defaultCollusion(this.gameWidth, this.gameHeight, this);
+        defaultCollision(this.gameWidth, this.gameHeight, this);
 
-        if (isCollusion(this, this.paddle)) {
+        if (isCollision(this, this.paddle)) {
             this.speed.y = -this.speed.y;
 
             if (((this.speed.x > 0 && this.paddle.speed > 0) || (this.speed.x < 0 && this.paddle.speed < 0))) {
