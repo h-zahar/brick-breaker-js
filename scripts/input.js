@@ -1,7 +1,6 @@
 export default class InputHandler {
     constructor(obj, game) {
         document.addEventListener("keydown", event => {
-          console.log(event.key)
           if (event.key === "ArrowLeft") {
             obj.paddle.moveLeft();
           } 

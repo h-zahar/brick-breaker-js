@@ -26,7 +26,7 @@ export const defaultCollision = (gameWidth, gameHeight, ball) => {
 
 export const isCollision = (ball, gameObject) => {
     // console.log(gameHeight, gameWidth, ball.position, gameObject.position);
-    if (!gameObject?.paddle) console.log(gameObject);
+    // if (!gameObject?.paddle) console.log(gameObject);
 
     let actualXPosition = ball.position.x;
     let actualYPosition = ball.position.y;
