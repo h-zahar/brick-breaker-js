@@ -1,3 +1,4 @@
+import { collusion } from "./collusion.js";
 import { levels } from "./levels.js";
 const level = levels?.level1;
 
@@ -7,6 +8,8 @@ export default class Brick {
         this.brick = document.getElementById("brick");
         this.gameWidth = frame.game.width;
         this.gameHeight = frame.game.height;
+        this.ball = frame.ball;
+
         this.offset = 0;
 
         this.speed = {
@@ -38,7 +41,24 @@ export default class Brick {
         }
     }
 
-    // update() {
+    // update(deltaTime) {
 
+        // for ( let i = 0; i < level.length; i++) {
+        //     for (let j = 0; j < level[i].length; j++) {
+        //         level[i][j] ? collusion(
+        //             this.gameWidth,
+        //             this.gameHeight,
+        //             this.ball,
+        //             {
+        //                 position: {
+        //                     x: this.position.x + (j * (this.width + this.offset)), 
+        //                     y: this.position.y + (i * (this.height + this.offset)), 
+        //                 },
+        //                 width: this.width, 
+        //                 height: this.height
+        //             }
+        //         ) : null;
+        //     }
+        // }
     // }
 };
