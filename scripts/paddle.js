@@ -3,8 +3,8 @@ export default class Paddle {
         this.gameWidth = frame.game.width;
         this.gameHeight = frame.game.height;
 
-        this.width = 150;
-        this.height = 30;
+        this.width = 170;
+        this.height = 10;
 
         this.offset = 10;
 
@@ -13,7 +13,7 @@ export default class Paddle {
             y: this.gameHeight - this.height - this.offset
         };
         
-        this.maxSpeed = 60;
+        this.maxSpeed = 80;
         this.speed = 0;
     }
 

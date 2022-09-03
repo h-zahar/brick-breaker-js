@@ -1,14 +1,19 @@
+import { defaultCollision, isCollision } from "./collision.js";
+
 export default class Ball {
     constructor(frame) {
         this.paddle = frame.paddle;
         this.ball = document.getElementById("ball");
         this.gameWidth = frame.game.width;
         this.gameHeight = frame.game.height;
-        this.offset = 10;
+        this.offsetX = 350;
+        this.offsetY = 200;
+        this.setGameState = frame.setGameState;
+        this.reset = frame.reset;
 
         this.speed = {
-            x: 40,
-            y: 40
+            x: 55,
+            y: 55
         }
 
         this.size = {
@@ -17,8 +22,8 @@ export default class Ball {
         };
 
         this.position = {
-            x: this.size.x + this.offset,
-            y: this.size.y + this.offset
+            x: this.size.x + this.offsetX,
+            y: this.size.y + this.offsetY
         };
     }
 
@@ -30,32 +35,27 @@ export default class Ball {
         this.position.x += this.speed.x / deltaTime;
         this.position.y += this.speed.y / deltaTime;
 
-        const leftBar = 0;
-        const rightBar = this.gameWidth;
-        const topRoof = this.gameHeight;
-        const ground = 0;
+        defaultCollision(this.gameWidth, this.gameHeight, this);
 
-        let actualXPosition = this.position.x;
-        let actualYPosition = this.position.y;
-
-        let relativeXPosition = this.position.x + this.size.x;
-        let relativeYPosition = this.position.y + this.size.y;
-        
-        let leftXLimit = this.paddle.position.x;
-        let rightXLimit = this.paddle.position.x + this.paddle.width;
-
-        let collusionYPoint = this.paddle.position.y
-
-        if (relativeXPosition >= rightBar || actualXPosition <= leftBar) {
-            this.speed.x = -this.speed.x;
-        }
-
-        if (relativeYPosition >= collusionYPoint && (actualXPosition >= leftXLimit && actualXPosition <= rightXLimit)) {
+        if (isCollision(this, this.paddle)) {
             this.speed.y = -this.speed.y;
-        }
 
-        if (relativeYPosition >= topRoof || actualYPosition <= ground) {
-            this.speed.y = -this.speed.y;
-        }
+            if (((this.speed.x > 0 && this.paddle.speed > 0) || (this.speed.x < 0 && this.paddle.speed < 0))) {
+                this.speed.x = this.speed.x + (this.paddle.speed / 150);
+                this.speed.y = this.speed.y + (this.paddle.speed / 100);
+            }
+            if (!((this.speed.x > 0 && this.paddle.speed > 0) || (this.speed.x < 0 && this.paddle.speed < 0))) {
+                this.speed.x = this.speed.x + (this.paddle.speed / 300);
+                this.speed.y = this.speed.y - (this.paddle.speed / 200);
+            }
+
+            // if (this.paddle.speed === 0) {
+            //     this.speed.x = this.speed.x;
+            //     this.speed.y = this.speed.y;
+            // }
+
+            // console.log(this);
+            this.position.y = this.paddle.position.y - this.size.y;
+        };
     }
 }
