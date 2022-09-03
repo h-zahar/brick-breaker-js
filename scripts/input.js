@@ -1,5 +1,5 @@
 export default class InputHandler {
-    constructor(obj) {
+    constructor(obj, game) {
         document.addEventListener("keydown", event => {
           if (event.key === "ArrowLeft") {
             obj.paddle.moveLeft();
@@ -17,6 +17,9 @@ export default class InputHandler {
             if (event.key === "ArrowRight") {
                 if (obj.paddle.speed > 0)
                 obj.paddle.stop();
+            }
+            if (event.key === "Escape") {
+              obj.gameState = obj.gameState === game.PAUSED ? game.RUNNING : game.PAUSED;
             }
         });
 
