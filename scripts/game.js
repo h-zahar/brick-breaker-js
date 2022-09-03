@@ -24,8 +24,12 @@ export default class GameManager {
         this.levels = levels;
 
         this.reset = () => {
+            this.ball.speed.x = 0;
+            this.ball.speed.y = 0;
+
             this.ball.position.x = this.ball.position.x;
             this.ball.position.y = this.ball.position.y;
+            
             location.reload();
         };
     }
