@@ -28,7 +28,7 @@ export default class GameManager {
             this.ball.speed.y = 0;
 
             this.ball.position.x = this.ball.position.x;
-            this.ball.position.y = this.ball.position.y;
+            this.ball.position.y = this.ball.position.y - (this.ball.size / 2) - 20;
             
             location.reload();
         };
