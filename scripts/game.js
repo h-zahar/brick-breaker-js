@@ -60,6 +60,9 @@ export default class GameManager {
             ctx.fillStyle = "black";
             ctx.textAlign = "center";
             ctx.fillText("Press Spacebar to Start!", this.game.width / 2, this.game.height / 2);
+
+            ctx.font = "18px Arial";
+            ctx.fillText("Esc to Pause Anytime!", this.game.width / 2, (this.game.height / 2) + 45);
         }
 
         this.gameState !== GAMESTATE.MENU ? this.objs.forEach(elem => {
