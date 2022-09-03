@@ -15,8 +15,8 @@ export const defaultCollusion = (gameWidth, gameHeight, ball) => {
     }
 
     if (relativeYPosition >= topRoof) {
-        ball.speed.x = 0;
-        ball.speed.y = 0;
+        // ball.setGameState(2);
+        ball.reset();
     }
 
     if (actualYPosition <= ground) {

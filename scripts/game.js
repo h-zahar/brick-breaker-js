@@ -2,6 +2,7 @@ import Paddle from "./paddle.js";
 import InputHandler from "./input.js";
 import Ball from "./ball.js";
 import Bricks from "./brick.js";
+import { levels } from "./levels.js";
 
 const GAMESTATE = {
     PAUSED: 0,
@@ -16,10 +17,20 @@ export default class GameManager {
             width: gameWidth,
             height: gameHeight
         };
+        this.gameState = GAMESTATE.MENU;
+        this.setGameState = (option) => {
+            this.gameState = option;
+        };
+        this.levels = levels;
+
+        this.reset = () => {
+            this.ball.position.x = this.ball.size.x + this.ball.offsetX;
+            this.ball.position.y = this.ball.size.y + this.ball.offsetY;
+            location.reload();
+        };
     }
 
     start() {
-        this.gameState = GAMESTATE.RUNNING;
         this.paddle = new Paddle(this);
         this.ball = new Ball(this);
         this.brick = new Bricks(this);
@@ -41,10 +52,20 @@ export default class GameManager {
             ctx.fillText("Paused!", this.game.width / 2, this.game.height / 2);
         }
 
-        this.objs.forEach(elem => {
+        if (this.gameState === GAMESTATE.MENU) {
+            ctx.fillStyle = "rgba(144, 144, 144, 0.5)";
+            ctx.fillRect(0, 0, this.game.width, this.game.height);
+            
+            ctx.font = "25px Arial";
+            ctx.fillStyle = "black";
+            ctx.textAlign = "center";
+            ctx.fillText("Press Spacebar to Start!", this.game.width / 2, this.game.height / 2);
+        }
+
+        this.gameState !== GAMESTATE.MENU ? this.objs.forEach(elem => {
             elem?.draw ? elem.draw(ctx)
             : null;
-        });
+        }) : null;
 
     }
 
@@ -55,9 +76,6 @@ export default class GameManager {
                 elem?.update ? elem.update(deltaTime)
                 : null;
             });
-        }
-        if (this.gameState === GAMESTATE.PAUSED) {
-            // this.draw();
         }
     }
 }

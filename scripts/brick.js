@@ -1,6 +1,4 @@
 import { isCollusion } from "./collusion.js";
-import { levels } from "./levels.js";
-const level = levels?.level1;
 
 export default class Brick {
     constructor(frame) {
@@ -9,6 +7,8 @@ export default class Brick {
         this.gameWidth = frame.game.width;
         this.gameHeight = frame.game.height;
         this.ball = frame.ball;
+        this.levels = frame.levels;
+        this.level = frame.levels.level1;
 
         this.offset = 10;
 
@@ -17,7 +17,7 @@ export default class Brick {
             y: 40
         }
 
-        this.width = (this.gameWidth - (this.offset * (level[0].length + 1))) / (level[0].length);
+        this.width = (this.gameWidth - (this.offset * (frame.levels.level1[0].length + 1))) / (frame.levels.level1[0].length);
 
         this.height = 20;
 
@@ -28,9 +28,9 @@ export default class Brick {
     }
 
     draw(/** @type {CanvasRenderingContext2D} */ ctx) {
-        for ( let i = 0; i < level.length; i++) {
-            for (let j = 0; j < level[i].length; j++) {
-                level[i][j] ? ctx.drawImage(
+        for ( let i = 0; i < this.level.length; i++) {
+            for (let j = 0; j < this.level[i].length; j++) {
+                this.level[i][j] ? ctx.drawImage(
                     this.brick, 
                     this.position.x + (j * (this.width + this.offset)), 
                     this.position.y + (i * (this.height + this.offset)), 
@@ -43,9 +43,9 @@ export default class Brick {
 
     update(deltaTime) {
 
-        for ( let i = 0; i < level.length; i++) {
-            for (let j = 0; j < level[i].length; j++) {
-                level[i][j] ? ((isCollusion(
+        for ( let i = 0; i < this.level.length; i++) {
+            for (let j = 0; j < this.level[i].length; j++) {
+                this.level[i][j] ? ((isCollusion(
                     this.ball,
                     {
                         position: {
@@ -57,7 +57,7 @@ export default class Brick {
                     }
                 )) ? (() => { 
                     this.ball.speed.y = -this.ball.speed.y;
-                    level[i][j] = 0;
+                    this.level[i][j] = null;
                     }
 
                     )() : null
