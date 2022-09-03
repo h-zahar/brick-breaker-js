@@ -58,6 +58,11 @@ export default class Brick {
                 )) ? (() => { 
                     this.ball.speed.y = -this.ball.speed.y;
                     this.level[i][j] = null;
+                    const detect = this.level.filter(l => l.filter(l1 => l1 === 1).length != 0);
+                        if (detect.length === 0) {
+                           window.alert("You won!");
+                           location.reload();
+                        }
                     }
 
                     )() : null
