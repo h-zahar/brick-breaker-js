@@ -26,6 +26,7 @@ export const defaultCollusion = (gameWidth, gameHeight, ball) => {
 
 export const isCollusion = (ball, gameObject) => {
     // console.log(gameHeight, gameWidth, ball.position, gameObject.position);
+    if (!gameObject?.paddle) console.log(gameObject);
 
     let actualXPosition = ball.position.x;
     let actualYPosition = ball.position.y;
@@ -40,7 +41,7 @@ export const isCollusion = (ball, gameObject) => {
 
     let collusionBottomYPoint = gameObject.position.y + gameObject.height;
 
-    if ((relativeYPosition >= collusionUpYPoint && actualYPosition <= collusionBottomYPoint) && (actualYPosition <= collusionUpYPoint) && (actualXPosition >= leftXLimit && relativeXPosition <= rightXLimit)) {
+    if (((relativeYPosition >= collusionUpYPoint && actualYPosition <= collusionBottomYPoint) && (actualYPosition <= collusionBottomYPoint && relativeYPosition && collusionBottomYPoint)) && (actualXPosition >= leftXLimit && relativeXPosition <= rightXLimit)) {
         return true;
     } else {
         return false;

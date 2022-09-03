@@ -7,7 +7,7 @@ export default class Ball {
         this.gameWidth = frame.game.width;
         this.gameHeight = frame.game.height;
         this.offsetX = 350;
-        this.offsetY = 150;
+        this.offsetY = 200;
 
         this.speed = {
             x: 55,
